@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
 import { fetchJson } from "../components/api"
-import Filter from "../components/FIlter"
-import CharacterCard from "../components/CharacterCard"
+import CharacterFilters from "../components/CharacterFilters"
+import FavoriteToggle from "../components/characters/FavoriteToggle"
+import CharacterListUi from "../components/characters/CharacterListUI"
+import LoadMoreButton from "../components/ui/LoadMoreButton"
 
 
 export default function CharacterList(){
@@ -61,40 +62,26 @@ export default function CharacterList(){
         <section>
             <h1 className="text-3xl">Lista de Personajes</h1>
 
-            <Filter 
+            <CharacterFilters 
                 filters={filters}
                 onChange={setFilters}
             />
 
-            <button
-                onClick={() => setShowFavorites(!showFavorites)}
-            >
-                {showFavorites ? "Ver todos" : "Ver Favoritos"}
-            </button>
+            <FavoriteToggle 
+                showFavorites={showFavorites}
+                onToggle={() => setShowFavorites(!showFavorites)}
+            />
             
-            <div className="flex flex-wrap justify-between">
+            <CharacterListUi 
+                characters={filteredCharacters}
+                favorites={favorites}
+                toggleFavorite={toggleFavorite}
+            />
 
-                { filteredCharacters.length === 0 ? (
-                    
-                    <p>No hay resultados</p>
-                    
-                ) : (filteredCharacters.map(character => (
-                    <CharacterCard 
-                        key={character.id}
-                        character={character}
-                        isFavorite={favorites.includes(character.id)}
-                        onToggleFavorite={toggleFavorite}
-                    />
-                    ))
-                )}
-                
-            </div>
-
-            {info.next 
-                ? <button 
-                onClick={() => getCharacters(info.next)}>Cargar más</button>
-                :<div>No hay next Page</div>    
-            }
+            <LoadMoreButton 
+                hasNext={!!info.next}
+                onLoadMore={() => getCharacters(info.next)}
+            />
 
 
         </section>

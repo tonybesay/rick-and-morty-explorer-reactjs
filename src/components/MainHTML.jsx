@@ -1,7 +1,7 @@
-export default function MainHTML({children}){
-    return(
-        <main className="bg-emerald-700 p-3 flex">
-            {children}
-        </main>
-    )
+export default function MainHTML({ children }) {
+  return (
+    <main className="min-h-screen bg-gray-200 text-gray-900 p-2">
+      {children}
+    </main>
+  )
 }
