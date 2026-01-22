@@ -1,37 +1,38 @@
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 
-export default function Header(){
-    return(
-        <header 
-            className="border-b font-mono bg-emerald-800 text-white flex">
-            <div
-                className="px-2 max-w-[90%] mx-auto py-6 w-screen flex justify-between items-center">
-                <div>
-                    <p className="text-2xl font-semibold">
-                        Rick and Morty Explore with React
-                        </p>
-                    <p className="subtle text-sm mt-2 text-slate-900">
-                        Explora personajes, filtra por nombre/estado/especie y guarda tus favoritos.
-                    </p>
-                </div>
-                <nav>
-                    <ul className="flex gap-2 text-sm rounded p-1">
-                        <li className="p-1 bg-emerald-600 hover:bg-emerald-500 rounded text-white shadow">
-                            <Link to="/">
-                                Inicio
-                            </Link>
-                        </li>
-                        <li className="p-1 bg-emerald-600 hover:bg-emerald-500 rounded text-white shadow">
-                            <Link to="/episodes">
-                                Episodios
-                            </Link>
-                        </li>
-                        <li className="p-1 bg-emerald-600 hover:bg-emerald-500 rounded text-white shadow">
-                            <a href="">Favoritos</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-    )
+export default function Header() {
+  return (
+    <header className="bg-white border-b shadow-md">
+      <div className="app-container flex items-center justify-between h-16">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 bg-blue-600 rounded-full inline-block"></span>
+            <span className="text-xl font-semibold text-gray-900">Rick & Morty Explorer</span>
+          </div>
+          <span className="text-sm text-gray-500 mt-0.5">Explora personajes, filtra y guarda favoritos</span>
+
+        <nav className="flex gap-8 text-sm font-medium">
+          <NavLink to="/"
+            className={({ isActive }) =>`hover:text-blue-600 border-b-2 transition-colors ${
+                isActive
+                  ? "border-blue-600 text-blue-600"
+                  : "border-transparent text-gray-700"
+              }`
+            }
+          >
+            Personajes
+          </NavLink>
+          <NavLink to="/episodes"
+            className={({ isActive }) =>`hover:text-blue-600 border-b-2 transition-colors ${
+                isActive
+                  ? "border-blue-600 text-blue-600"
+                  : "border-transparent text-gray-700"
+              }`
+            }
+          >
+            Episodios
+          </NavLink>
+        </nav>
+      </div>
+    </header>
+  )
 }

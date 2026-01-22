@@ -1,9 +1,11 @@
 export default function Footer(){
     return (
-        <footer className="font-mono border-t border-slate-100 py-4 text-center text-sm text-slate-900 bg-emerald-800">
-            <p className="text-slate-100">Tony Mendoza Hernández</p>
-            <p>Master Full Stack</p>
-            <p>React JS</p>
+        <footer className="bg-white border-t py-4">
+            <div className="app-container text-center">
+                <p className="font-semibold text-gray-900">Tony Mendoza Hernández</p>
+                <p className="text-sm text-gray-600">Master Full Stack</p>
+                <p className="text-sm text-gray-600">React JS</p>
+            </div>
         </footer>
     )
 }

@@ -20,6 +20,7 @@ export default function CharacterList(){
         return saved ? JSON.parse(saved) : []
     })
     const [showFavorites, setShowFavorites] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
 
 
     const getCharacters = useCallback(async (url = API_ENDPOINTS.characters) => {
@@ -30,14 +31,18 @@ export default function CharacterList(){
     }, [])
 
     useEffect(() => {
-        async function fetchInitialCharacters() {
-            const data = await fetchJson(API_ENDPOINTS.characters)
-            setCharacters(data.results)
-            if (data.info) setInfo(data.info)
-        }
+    async function fetchInitialCharacters() {
+        setIsLoading(true)
 
-        fetchInitialCharacters()
-    },[])
+        const data = await fetchJson(API_ENDPOINTS.characters)
+        setCharacters(data.results)
+        if (data.info) setInfo(data.info)
+
+        setIsLoading(false)
+    }
+
+    fetchInitialCharacters()
+    }, [])
 
     useEffect(() => {
         localStorage.setItem("favorites", JSON.stringify(favorites))
@@ -62,28 +67,39 @@ export default function CharacterList(){
 
     return (
         <section>
-            <h1 className="text-3xl">Lista de Personajes</h1>
 
-            <CharacterFilters 
-                filters={filters}
-                onChange={setFilters}
-            />
+            <h1 className="text-4xl font-bold text-gray-900 text-center mb-6">Personajes</h1>
 
-            <FavoriteToggle 
-                showFavorites={showFavorites}
-                onToggle={() => setShowFavorites(!showFavorites)}
-            />
+            <div className="mt-2">
+                <CharacterFilters 
+                    filters={filters}
+                    onChange={setFilters}
+                />
+            </div>
+
+            <div className="text-sm">
+                <FavoriteToggle 
+                    showFavorites={showFavorites}
+                    onToggle={() => setShowFavorites(!showFavorites)}
+                    />
+            </div>
+
             
-            <CharacterListUi 
-                characters={filteredCharacters}
-                favorites={favorites}
-                toggleFavorite={toggleFavorite}
-            />
+            <div className="mt-6">
+                <CharacterListUi 
+                    characters={filteredCharacters}
+                    favorites={favorites}
+                    toggleFavorite={toggleFavorite}
+                    isLoading={isLoading}
+                />
+            </div>
 
-            <LoadMoreButton 
-                hasNext={!!info.next}
-                onLoadMore={() => getCharacters(info.next)}
-            />
+            <div className="mt-8">
+                <LoadMoreButton 
+                    hasNext={!!info.next}
+                    onLoadMore={() => getCharacters(info.next)}
+                />
+            </div>
 
 
         </section>

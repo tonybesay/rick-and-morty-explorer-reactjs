@@ -1,8 +1,8 @@
 export default function CharacterFilters({ filters, onChange }){
 
     return(
-        <div className="p-4 bg-gray-100 rounded-md shadow-md max-w-4xl w-full mx-auto">            
-            <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0 mb-4">
+        <div className="bg-white rounded-xl border shadow-lg max-w-4xl mx-auto p-6">            
+            <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
                 <input 
                     type="text"
                     placeholder="Filtro por nombre" 
@@ -10,14 +10,14 @@ export default function CharacterFilters({ filters, onChange }){
                     onChange={(e) => 
                         onChange({...filters, name: e.target.value})
                     }
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400"
                 />
                 <select 
                     value={filters.status}
                     onChange={(e) => 
                         onChange({...filters, status: e.target.value})
                     }
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400"
                 >
                     <option value="">Estado</option>
                     <option value="Alive">Alive</option>
@@ -31,18 +31,19 @@ export default function CharacterFilters({ filters, onChange }){
                     onChange={(e) => 
                         onChange({...filters, species: e.target.value})
                     }
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400"
                 />
+                
+                <div className="flex justify-center">
+                    <button 
+                        onClick={() => onChange({name: "", status: "", species: ""})}
+                        className="px-6 py-2 text-sm font-medium rounded-lg bg-gray-300 text-gray-700 hover:bg-gray-200 transition-colors"
+                        >                
+                        Limpiar filtros
+                    </button>
+                </div>
             </div>
 
-            <div className="flex justify-center">
-                <button 
-                    onClick={() => onChange({name: "", status: "", species: ""})}
-                    className="w-1/3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-                    >                
-                    Limpiar filtros
-                </button>
-            </div>
         </div>
     )
 }

@@ -6,14 +6,16 @@ export default function CharacterCard({
   onToggleFavorite,
 }) {
   return (
-    <article className="w-full h-full bg-white rounded-lg shadow-lg flex flex-col my-3 mx-2">
+    <article className="w-full h-[90%] bg-white rounded-xl border shadow-lg transition-all duration-200 ease-out hover:shadow-xl hover:-translate-y-1 flex flex-col group">
 
       {/* Imagen */}
-      <img
-        src={character.image}
-        alt={character.name}
-        className="w-full h-48 object-cover rounded"
-      />
+      <div className="overflow-hidden rounded-t-xl">
+        <img
+          src={character.image}
+          alt={character.name}
+          className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-110"
+        />
+      </div>
 
       {/* Contenido */}
       <div className="flex flex-col flex-1 p-4 gap-2">
@@ -22,7 +24,7 @@ export default function CharacterCard({
           {character.name}
         </h3>
 
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-gray-500">
           {character.species} · {character.gender} · {character.status}
         </p>
 
@@ -34,18 +36,18 @@ export default function CharacterCard({
 
           <button
             onClick={() => onToggleFavorite(character.id)}
-            className={`px-3 py-1 text-sm rounded transition
-              ${isFavorite
-                ? "bg-red-500 text-white hover:bg-red-600"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300"}
-            `}
+            className={`px-3 py-1.5 text-xs font-medium rounded-full transition-colors ${
+              isFavorite
+                ? "bg-red-100 text-red-600 hover:bg-red-200"
+                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+            }`}
           >
             {isFavorite ? "❤️ Favorito" : "🤍 Favorito"}
           </button>
 
           <Link
             to={`/character/${character.id}`}
-            className="text-sm text-blue-600 hover:underline"
+            className="text-xs font-medium text-blue-600 hover:text-blue-700 transition-colors"
           >
             Ver detalle
           </Link>

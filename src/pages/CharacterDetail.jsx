@@ -7,18 +7,42 @@ import { API_ENDPOINTS } from "../api/endpoints"
 export default function CharacterDetail() {
     const { id } = useParams()
     const [character, setCharacter] = useState(null)
+    const [isLoading, setIsLoading] = useState(true)
     const navigate = useNavigate()
 
-    useEffect( ()=> {
-        async function getCharacter() {
+    useEffect(() => {
+        async function fetchCharacter() {
+            setIsLoading(true)
+
             const data = await fetchJson(`${API_ENDPOINTS.characters}/${id}`)
             setCharacter(data)
+
+            setIsLoading(false)
         }
-    
-        getCharacter()
+
+        fetchCharacter()
     }, [id])
 
-    if (!character) return <p className="text-center text-gray-500 mt-10">Cargando...</p>
+    // if (!character) return <p className="text-center text-gray-500 mt-10">Cargando...</p>
+    if (isLoading) {
+        return (
+            <div className="max-w-4xl mx-auto px-4 py-6 animate-pulse">
+            {/* Title */}
+            <div className="h-8 bg-gray-200 rounded w-1/2 mx-auto mb-6"></div>
+
+            {/* Image */}
+            <div className="h-72 bg-gray-200 rounded-xl mb-6"></div>
+
+            {/* Info lines */}
+            <div className="space-y-3 max-w-md mx-auto">
+                <div className="h-4 bg-gray-200 rounded"></div>
+                <div className="h-4 bg-gray-200 rounded"></div>
+                <div className="h-4 bg-gray-200 rounded"></div>
+                <div className="h-4 bg-gray-200 rounded"></div>
+            </div>
+            </div>
+        )
+        }
 
     return (
         <section className="max-w-4xl mx-auto px-4 py-6">
