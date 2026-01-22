@@ -1,16 +1,97 @@
-# React + Vite
+# 🛸 Rick & Morty Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web desarrollada con **React** que permite explorar el universo de *Rick & Morty* a través de personajes y episodios, con filtros avanzados, sistema de favoritos y una interfaz cuidada con loaders y estados vacíos.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Demo
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🧩 Funcionalidades
+
+### 👤 Personajes
+- Listado de personajes con paginación
+- Filtros por:
+  - Nombre
+  - Estado
+  - Especie
+- Sistema de **favoritos** persistente (localStorage)
+- Vista de detalle de personaje
+- Skeleton loaders y estados vacíos
+- Cards con hover y micro-interacciones
+
+### 📺 Episodios
+- Listado de episodios
+- Vista de personajes por episodio
+- Carga optimizada de personajes relacionados
+- Skeleton loaders y estado vacío
+
+### 🎨 UX / UI
+- Diseño consistente con Tailwind CSS
+- Layout responsive
+- Estados de carga (skeletons)
+- Estados vacíos (“No hay resultados”)
+- Navegación activa en el header
+- Interacciones suaves (hover, transiciones)
+
+---
+
+## 🛠️ Tecnologías utilizadas
+
+- **React**
+- **React Router DOM**
+- **Tailwind CSS**
+- **JavaScript (ES6+)**
+- **Vite**
+- **Rick and Morty API**
+- **LocalStorage**
+- **Git & GitHub**
+
+---
+
+## 🧠 Arquitectura del proyecto
+
+La aplicación sigue una estructura modular y escalable, separando responsabilidades:
+
+```txt
+src/
+├── api/                # Fetch y endpoints de la API
+├── components/
+│   ├── characters/     # Componentes relacionados con personajes
+│   ├── episodes/       # Componentes relacionados con episodios
+│   ├── layout/         # Header, Footer y layout general
+│   └── ui/             # Componentes UI reutilizables
+├── pages/              # Vistas asociadas a rutas
+├── index.css           # Estilos base globales
+└── main.jsx
+```
+
+## Principios aplicados:
+	•	Separación entre lógica y presentación
+	•	Componentes reutilizables
+	•	Estados bien definidos: loading / vacío / datos
+	•	Buen uso de hooks (useState, useEffect, useCallback)
+	•	Navegación SPA con NavLink
+
+## ⚙️ Instalación y uso
+```bash
+# Clonar el repositorio
+git clone https://github.com/tu-usuario/rick-and-morty-explorer.git
+
+# Entrar en el proyecto
+cd rick-and-morty-explorer
+
+# Instalar dependencias
+npm install
+
+# Ejecutar en desarrollo
+npm run dev
+```
+## 👨‍💻 Autor
+
+Tony Mendoza Hernandez
+Desarrollador Full Stack
+	•	GitHub: https://github.com/tonybesay
