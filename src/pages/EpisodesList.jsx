@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react"
-import { fetchJson } from "./api"
-import EpisodeListUI from "./episodes/EpisodeListUI"
+import { fetchJson } from "../api/api"
+import EpisodeListUI from "../components/episodes/EpisodeListUI"
+import { API_ENDPOINTS } from "../api/endpoints"
 
 export default function EpisodesList(){
     const [episodes, setEpisodes] = useState([])
 
-    async function getEpisodes(){
-        const data = await fetchJson("https://rickandmortyapi.com/api/episode")
-        setEpisodes(data.results)
-    }
-
     useEffect( () => {
+        async function getEpisodes(){
+            const data = await fetchJson(API_ENDPOINTS.episodes)
+            setEpisodes(data.results)
+        }
+
         getEpisodes()
     }, [])
 
@@ -18,7 +19,6 @@ export default function EpisodesList(){
     return (
         <section>
             <h1>Lista de Episodios</h1>
-
             <EpisodeListUI episodes={episodes} />
         </section>
     )

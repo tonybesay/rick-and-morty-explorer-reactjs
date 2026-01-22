@@ -1,12 +1,11 @@
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import Footer from './components/Footer'
-import Header from './components/Header'
-import Main from './components/MainHTML'
+import Footer from './components/layout/Footer'
+import Header from './components/layout/Header'
 import CharacterList from './pages/characterList'
 import CharacterDetail from './pages/CharacterDetail'
-import EpisodesList from './components/EpisodesList'
-import MainHTML from './components/MainHTML'
+import EpisodesList from './pages/EpisodesList'
+import MainHTML from './components/layout/MainHTML'
 
 function App() {
 

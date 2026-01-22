@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
-import { fetchJson } from "./api"
 import { Link } from "react-router-dom"
+import { fetchJson } from "../../api/api"
 
 export default function EpisodeCharacters({ characters }){
     const [charactersData, setCharactersData] = useState([])
     const [showAll, setShowAll] = useState(false)
 
+    useEffect(() => {
     async function getCharacters() {
         if (!characters || characters.length === 0) return 
 
@@ -13,7 +14,6 @@ export default function EpisodeCharacters({ characters }){
         setCharactersData(result)
     }
 
-    useEffect(() => {
         getCharacters()
     }, [characters])
 

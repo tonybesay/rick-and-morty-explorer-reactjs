@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react"
-import { fetchJson } from "../components/api"
-import CharacterFilters from "../components/CharacterFilters"
+import { useEffect, useState, useCallback } from "react"
+import { fetchJson } from "../api/api"
+import CharacterFilters from "../components/characters/CharacterFilters"
 import FavoriteToggle from "../components/characters/FavoriteToggle"
 import CharacterListUi from "../components/characters/CharacterListUI"
 import LoadMoreButton from "../components/ui/LoadMoreButton"
+import { API_ENDPOINTS } from "../api/endpoints"
 
 
 export default function CharacterList(){
@@ -21,21 +22,22 @@ export default function CharacterList(){
     const [showFavorites, setShowFavorites] = useState(false)
 
 
-    async function getCharacters(url = 'https://rickandmortyapi.com/api/character/'){
-        const data =  await fetchJson(url)
+    const getCharacters = useCallback(async (url = API_ENDPOINTS.characters) => {
+        const data = await fetchJson(url)
 
         setCharacters(prev => [...prev, ...data.results])
+        if (data.info) setInfo(data.info)
+    }, [])
 
-        if (data.info){
-            setInfo(data.info)
+    useEffect(() => {
+        async function fetchInitialCharacters() {
+            const data = await fetchJson(API_ENDPOINTS.characters)
+            setCharacters(data.results)
+            if (data.info) setInfo(data.info)
         }
-    }
-    
-    useEffect( () => {
-        setCharacters([])
-        setInfo("")
-        getCharacters()
-    }, [filters])
+
+        fetchInitialCharacters()
+    },[])
 
     useEffect(() => {
         localStorage.setItem("favorites", JSON.stringify(favorites))

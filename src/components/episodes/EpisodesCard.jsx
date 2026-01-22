@@ -1,4 +1,4 @@
-import EpisodeCharacters from "../EpisodeCharacters"
+import EpisodeCharacters from "./EpisodeCharacters"
 
 export default function EpisodesCard({ episode }){
     return (

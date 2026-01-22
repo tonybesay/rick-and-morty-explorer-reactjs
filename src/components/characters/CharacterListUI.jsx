@@ -1,4 +1,4 @@
-import CharacterCard from "../CharacterCard"
+import CharacterCard from "./CharacterCard"
 
 export default function CharacterListUi({ characters, favorites, toggleFavorite }){
     if (characters.length === 0) {
