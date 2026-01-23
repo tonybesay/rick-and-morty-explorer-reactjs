@@ -2,12 +2,10 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
-
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
   ],
-  base: 'https://github.com/tonybesay/rick-and-morty-explorer-reactjs',
+  base: '/rick-and-morty-explorer-reactjs/',
 })
