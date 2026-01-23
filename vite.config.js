@@ -9,4 +9,5 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  base: 'https://github.com/tonybesay/rick-and-morty-explorer-reactjs',
 })
